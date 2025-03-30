@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Current Challenges</h2>
+        {% for challenge in challenges %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ challenge.title }}</h5>
+                <p class="card-text">{{ challenge.description }}</p>
+                <div class="d-flex justify-content-between">
+                    <span class="text-muted">
+                        {{ challenge.start_date|date:"M d" }} - {{ challenge.end_date|date:"M d" }}
+                    </span>
+                    <a href="{% url 'challenge_detail' challenge.id %}" 
+                       class="btn btn-sm btn-outline-success">Join Challenge</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
